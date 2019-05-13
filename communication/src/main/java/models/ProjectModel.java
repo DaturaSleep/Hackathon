@@ -2,13 +2,14 @@ package models;
 
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class ProjectModel {
 	private String name;
 	private String description;
 	private Integer percentsOfDoneWork = 0;
 	private CategoryModel category;
-	private Map<String, Boolean> targets;
+	private Map<String, Boolean> targets = new TreeMap<String,Boolean>();
 	private List<UserModel> listOfUsers;
 	private Long chatId;
 	
@@ -22,6 +23,10 @@ public class ProjectModel {
 			this.listOfUsers.add(user);
 			user.addProject(this);
 		}
+	}
+	
+	public void addTarget(String target) {
+		this.targets.put(target, false);
 	}
 	public String getName() {
 		return name;
